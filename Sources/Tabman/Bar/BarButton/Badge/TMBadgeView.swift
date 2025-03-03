@@ -79,6 +79,14 @@ open class TMBadgeView: UIView {
         }
     }
     
+    
+    open var contentViewCornerRadius: CGFloat = 0.0 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    
     // MARK: Init
     
     public override init(frame: CGRect) {
@@ -130,7 +138,7 @@ open class TMBadgeView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.layer.cornerRadius = bounds.size.height / 2.0
+        contentView.layer.cornerRadius = self.contentViewCornerRadius < 0.000001 ? bounds.size.height / 2.0 : self.contentViewCornerRadius
     }
 
     open override func tintColorDidChange() {
