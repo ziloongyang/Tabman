@@ -46,6 +46,15 @@ class ButtonBarExampleViewController: TabmanViewController, PageboyViewControlle
             $0.tintColor = UIColor.tabmanForeground.withAlphaComponent(0.4)
             $0.selectedTintColor = .tabmanForeground
             $0.adjustsFontForContentSizeCategory = true
+            
+            $0.badge.contentViewCornerRadius = 5
+            if #available(iOS 13.0, *) {
+                $0.badge.tintColor = .systemGray.withAlphaComponent(0.3)
+                $0.badge.selectedTintColor = .label
+                $0.badge.textColor = .systemGray
+                $0.badge.selectedTextColor = .systemBackground
+            }
+            
         }
         bar.indicator.tintColor = .tabmanForeground
         
@@ -70,6 +79,6 @@ class ButtonBarExampleViewController: TabmanViewController, PageboyViewControlle
     // MARK: TMBarDataSource
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-        return TMBarItem(title: "Page No. \(index + 1)") // Item to display for a specific index in the bar.
+        return TMBarItem(title: "Page No. \(index + 1)", badgeValue: "12") // Item to display for a specific index in the bar.
     }
 }

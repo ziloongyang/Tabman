@@ -65,11 +65,14 @@ open class TMBadgeView: UIView {
             label.textColor = newValue
         }
     }
+    open var selectedTextColor: UIColor?
+    
     /// Tint which is used as background color.
     open override var tintColor: UIColor! {
         didSet {}
     }
-
+    open var selectedTintColor: UIColor?
+    
     /// Content Inset around the badge label.
     ///
     /// Defaults to `UIEdgeInsets(top: 2.0, left: 4.0, bottom: 2.0, right: 4.0)`.
@@ -79,13 +82,11 @@ open class TMBadgeView: UIView {
         }
     }
     
-    
     open var contentViewCornerRadius: CGFloat = 0.0 {
         didSet {
             setNeedsLayout()
         }
     }
-    
     
     // MARK: Init
     
@@ -144,6 +145,18 @@ open class TMBadgeView: UIView {
     open override func tintColorDidChange() {
         contentView.backgroundColor = tintColor
     }
+    
+    open func update(for selectionState: TMBarButton.SelectionState) {
+        if let selectedTintColor = selectedTintColor {
+            contentView.backgroundColor = tintColor.interpolate(with: selectedTintColor,
+                                                    percent: selectionState.rawValue)
+        }
+        if let selectedTextColor = selectedTextColor {
+            label.textColor = textColor.interpolate(with: selectedTextColor,
+                                                    percent: selectionState.rawValue)
+        }
+    }
+    
 }
 
 // MARK: - Constraints

@@ -220,6 +220,7 @@ open class TMLabelBarButton: TMBarButton {
                                                     percent: selectionState.rawValue)
         
         label.textColor = transitionColor
+        badge.update(for: selectionState)
         
         // Because we can't animate nicely between fonts 😩
         // Cross dissolve on 'end' states between font properties.
