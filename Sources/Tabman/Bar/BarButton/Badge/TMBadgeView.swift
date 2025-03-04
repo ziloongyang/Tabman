@@ -57,12 +57,9 @@ open class TMBadgeView: UIView {
         }
     }
     /// Text color of the label.
-    open var textColor: UIColor {
-        get {
-            return label.textColor
-        }
-        set {
-            label.textColor = newValue
+    open var textColor: UIColor = .systemGray {
+        didSet {
+            label.textColor = textColor
         }
     }
     open var selectedTextColor: UIColor?
